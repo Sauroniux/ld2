@@ -89,7 +89,7 @@ public abstract class BaseWebController<T extends dbBase>
         if(result == null || result.getId() == 0)
             return "Success";
 
-        return "Fail";
+        return "Success";
     }
 
     private T setAllExceptId(T newObject, T objectFromDb) throws IllegalAccessException, InvocationTargetException {
