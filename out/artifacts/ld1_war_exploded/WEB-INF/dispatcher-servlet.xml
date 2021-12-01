@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven/>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/login">login</prop>
+                <prop key="/company">company</prop>
+                <prop key="/course">course</prop>
+                <prop key="/file">file</prop>
+                <prop key="/folder">folder</prop>
+                <prop key="/person">person</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp"/>
+
+    <bean name="login"
+          class="com.example.ld2.webControllers.WebLoginController"
+    />
+    <bean name="company"
+          class="com.example.ld2.webControllers.WebCompanyController"
+    />
+    <bean name="course"
+          class="com.example.ld2.webControllers.WebCourseController"
+    />
+    <bean name="file"
+          class="com.example.ld2.webControllers.WebFileController"
+    />
+    <bean name="folder"
+          class="com.example.ld2.webControllers.WebFolderController"
+    />
+    <bean name="person"
+          class="com.example.ld2.webControllers.WebPersonController"
+    />
+
+</beans>

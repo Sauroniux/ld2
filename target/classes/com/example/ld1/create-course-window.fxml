@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ld1.fxControllers.CreateCourseWindowController">
+   <children>
+      <Pane prefHeight="65.0" prefWidth="400.0" />
+      <Label text="Title">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="titleField">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <Label text="Description">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextArea prefHeight="200.0" prefWidth="200.0" fx:id="descriptionField">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <Pane prefHeight="200.0" prefWidth="200.0" />
+       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+           <children>
+               <Button mnemonicParsing="false" onAction="#onCreateCourse" prefHeight="25.0" prefWidth="147.0" text="Create">
+                   <font>
+                       <Font size="18.0" />
+                   </font></Button>
+               <Pane prefHeight="100.0" prefWidth="73.0" />
+               <Button mnemonicParsing="false" onAction="#onClickCancel" prefHeight="25.0" prefWidth="147.0" text="Cancel">
+                   <font>
+                       <Font size="18.0" />
+                   </font></Button>
+           </children>
+       </HBox>
+   </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

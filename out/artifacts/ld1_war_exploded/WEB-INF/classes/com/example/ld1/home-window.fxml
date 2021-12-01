@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="760.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ld1.fxControllers.HomeWindowController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Course">
+            <items>
+                  <MenuItem fx:id="createCourseMenuItem" mnemonicParsing="false" onAction="#onCreateCourseClick" text="Create Course" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickRefresh" text="Refresh" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="User">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickDeleteUser" text="Delete account" />
+              <MenuItem mnemonicParsing="false" onAction="#onClickLogOut" text="Log out" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <HBox prefHeight="549.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Viewable courses">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin></Label>
+                  <ListView fx:id="viewableCourseList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></ListView>
+                  <Label text="Moderated courses">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin></Label>
+                  <ListView fx:id="moderatedCourseList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></ListView>
+               </children>
+            </VBox>
+            <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+         </children></HBox>
+   </children>
+</VBox>
