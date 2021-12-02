@@ -1,0 +1,1 @@
+[{"firstName":"xd","secondName":"xd","accessibleCourses":[],"moderatedCourses":[],"username":"hahah","password":"1234","dateUserCreated":"2021-11-13","dateLastModified":"2021-11-13","id":1}]

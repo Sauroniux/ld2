@@ -1,0 +1,198 @@
+POST http://localhost:9999/login/checkLogin
+
+<> 2021-11-29T220628.404.html
+
+###
+
+GET http://localhost:8080/person/allPeople
+
+###
+
+POST http://localhost:9999/course/addCourse
+
+<> 2021-11-14T004747.404.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T233605.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T231811.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T230551.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T230323.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T230218.404.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T225618.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T204953.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T204844.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T204521.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T204333.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T204044.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T203437.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T202530.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T202519.404.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T201311.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T201001.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T182310.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T181705.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T181436.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T181357.200.txt
+
+###
+
+PUT http://localhost:9999/user/updatePerson/{{1}}
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T180103.200.txt
+
+###
+
+PUT http://localhost:9999/user/updatePerson/{{id}}
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-13T175628.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-11T210725.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-11T210546.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-11T210518.404.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-11T210309.200.txt
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-11T205958.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-11T205738.500.html
+
+###
+
+GET http://localhost:9999/user/allUsers
+
+<> 2021-11-11T205540.500.html
+
+###
+
