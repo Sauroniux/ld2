@@ -9,7 +9,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f9801d-e689-4af5-b11e-16cd23752e86" name="Changes" comment="" />
+    <list default="true" id="04f9801d-e689-4af5-b11e-16cd23752e86" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Desktop_App.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/AccountType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/BaseUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Company.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/File.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/FileSystemItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/FileSystemItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Folder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/dbBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/dbBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/CreateCourseWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/CreateCourseWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/LoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/RegisterWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/RegisterWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/BaseWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/BaseWebController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebCompanyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebCourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFolderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFolderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebPersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebPersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/BaseUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Company.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Course.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/File.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/FileSystemItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Folder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/dbBase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/dbManagers/DbManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/dbManagers/FactoryHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/LoginWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/RegisterWindow$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/RegisterWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/BaseWebController$AccessPair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/BaseWebController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebCompanyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebCourseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFileController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFolderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController$LoginInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebPersonController.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,9 +74,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="spring-beans.schema" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -76,17 +131,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="azul-17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.47550112" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
     <property name="settings.editor.splitter.proportion" value="0.21231422" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Epic Games\Android Java xd\ld2\src\main\java\com\example\ld1\dbManagers" />
       <recent name="D:\Epic Games\ld1\src\main\java\com\example\ld1\fxControllers" />
       <recent name="D:\Epic Games\ld1\src\main\resources\com\example\ld1" />
       <recent name="D:\Epic Games\CourseSys\src\main\java\com\example\coursesys\ds" />
@@ -95,7 +151,7 @@
       <recent name="com.example.ld1" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Serveris">
+  <component name="RunManager" selected="Application.Desktop App">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
@@ -112,6 +168,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Desktop App" />
       <item itemvalue="HTTP Request.All in generated-requests" />
       <item itemvalue="HTTP Request.generated-requests#2" />
       <item itemvalue="HTTP Request.generated-requests#3" />
@@ -163,6 +220,9 @@
       <workItem from="1638299521334" duration="619000" />
       <workItem from="1638373111800" duration="4263000" />
       <workItem from="1638408094175" duration="553000" />
+      <workItem from="1639072362115" duration="10223000" />
+      <workItem from="1639187069442" duration="3158000" />
+      <workItem from="1639190298478" duration="5592000" />
     </task>
     <servers />
   </component>
@@ -185,13 +245,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld1/data/FileSystemItem.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java</url>
-          <line>208</line>
+          <line>212</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -205,13 +260,8 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/BaseWebController.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebPersonController.java</url>
-          <line>36</line>
+          <line>38</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>

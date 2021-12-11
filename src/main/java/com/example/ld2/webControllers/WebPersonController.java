@@ -1,18 +1,20 @@
 package com.example.ld2.webControllers;
 
-        import com.example.ld1.data.Person;
+        import com.example.ld1.data.User;
+        import com.example.ld1.dbManagers.DbManager2;
         import org.springframework.http.HttpStatus;
         import org.springframework.stereotype.Controller;
         import org.springframework.web.bind.annotation.*;
 
         import java.lang.reflect.InvocationTargetException;
+        import java.util.List;
 
 @Controller //localhost:8080/application_context/company
-public class WebPersonController extends BaseWebController<Person>
+public class WebPersonController extends BaseWebController<User>
 {
     public WebPersonController()
     {
-        super(Person.class);
+        super(User.class);
     }
 
     @RequestMapping(value = "/person/allPeople", method = RequestMethod.GET)
@@ -42,5 +44,29 @@ public class WebPersonController extends BaseWebController<Person>
     @ResponseBody
     public String deletePerson(@PathVariable(name = "id") int id) {
         return delete(id);
+    }
+
+    @Override
+    protected List<User> getAllFromDb()
+    {
+        return DbManager2.getInstance().GetAllUsers();
+    }
+
+    @Override
+    protected User getByIdFromDb(int id)
+    {
+        return DbManager2.getInstance().GetUserById(id);
+    }
+
+    @Override
+    protected void updateInDb(User object)
+    {
+        DbManager2.getInstance().UpdateUser(object);
+    }
+
+    @Override
+    protected void deleteFromDb(int id)
+    {
+        DbManager2.getInstance().DeleteUser(id);
     }
 }

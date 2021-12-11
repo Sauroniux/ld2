@@ -1,7 +1,7 @@
 package com.example.ld1.fxControllers;
 
 import com.example.ld1.data.*;
-import com.example.ld1.dbManagers.DbManager;
+import com.example.ld1.dbManagers.DbManager2;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,6 +17,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Set;
 import java.util.ResourceBundle;
 
@@ -32,8 +33,8 @@ public class HomeWindowController implements Initializable
     @FXML
     private MenuItem createCourseMenuItem;
 
-    private Set<Course> viewableCourses;
-    private Set<Course> moderatedCourses;
+    private List<Course> viewableCourses;
+    private List<Course> moderatedCourses;
 
     private final ContextMenu treeContextMenu = new ContextMenu();
     private final ContextMenu listContextMenu = new ContextMenu();
@@ -43,7 +44,8 @@ public class HomeWindowController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        createCourseMenuItem.setDisable(DbManager.getInstance().getCurrentUser().isPerson());
+        User currentUser = DbManager2.getInstance().getCurrentUser();
+        createCourseMenuItem.setDisable(currentUser.getAccountType() == AccountType.Person);
         init();
     }
 
@@ -96,13 +98,13 @@ public class HomeWindowController implements Initializable
             protected void updateItem(Course item, boolean empty) {
                 super.updateItem(item, empty);
 
-                if (empty || item == null || item.getName() == null)
+                if (empty || item == null || item.getTitle() == null)
                 {
                     setText(null);
                     return;
                 }
 
-                setText(item.getName());
+                setText(item.getTitle());
             }
         };
 
@@ -113,10 +115,9 @@ public class HomeWindowController implements Initializable
 
     private void fetchAllCourses()
     {
-        DbManager.getInstance().UpdateCurrentUserFromDB();
-
-        viewableCourses = DbManager.getInstance().getViewableCourses();
-        moderatedCourses = DbManager.getInstance().getModeratedCourses();
+        User currentUser = DbManager2.getInstance().getCurrentUser();
+        viewableCourses  = DbManager2.getInstance().GetViewedCourses(currentUser);
+        moderatedCourses = DbManager2.getInstance().GetModeratedCourses(currentUser);
     }
 
     private void initTree(Course course)
@@ -124,16 +125,19 @@ public class HomeWindowController implements Initializable
         if(course == null)
             return;
 
-        TreeItem<FileSystemItem> root = new TreeItem<>(course.getRootFolder());
+        int rootFolderId = course.getRootFolderId();
+        Folder rootFolder = DbManager2.getInstance().GetFolder(rootFolderId);
 
-        for(var folder : course.getRootFolder().getSubFolders())
+        TreeItem<FileSystemItem> rootItem = new TreeItem<FileSystemItem>(rootFolder);
+        var subFolders = DbManager2.getInstance().GetChildFolders(rootFolder);
+        for(var folder : subFolders)
         {
-            AddSubFolder(folder, root);
+            AddSubFolder(folder, rootItem);
         }
 
-        AddFiles(course.getRootFolder(), root);
+        AddFiles(rootFolder, rootItem);
 
-        treeView.setRoot(root);
+        treeView.setRoot(rootItem);
 
         treeView.setCellFactory(new Callback<TreeView<FileSystemItem>,TreeCell<FileSystemItem>>(){
             @Override
@@ -148,10 +152,10 @@ public class HomeWindowController implements Initializable
                         }
                         else
                         {
-                            setText(file.getName());
+                            setText(file.getDisplayName());
 
                             if(file.isFile())
-                                setTextFill(GetColor(file.as(File.class).getFileExtension()));
+                                setTextFill(GetColor(File.class.cast(file).getFileExtension()));
                         }
                     }
                 };
@@ -221,18 +225,29 @@ public class HomeWindowController implements Initializable
         });
 
         delete.setOnAction(event -> {
-            DbManager.getInstance().DeleteFileSystemItem(item);
+            if(item.isFile())
+            {
+                File file = item.as(File.class);
+                DbManager2.getInstance().DeleteFile(file.getId());
+            }
+            else if(item.isFolder())
+            {
+                Folder folder = item.as(Folder.class);
+                DbManager2.getInstance().DeleteFolder(folder.getId());
+            }
         });
 
-        if(item.isFolder() && DbManager.getInstance().getCurrentUser().DoesModerateCourse(selectedCourse))
+        var currentUser = DbManager2.getInstance().getCurrentUser();
+        var moderatedCourses = DbManager2.getInstance().GetModeratedCourses(currentUser);
+        var doesModerate = moderatedCourses.contains(selectedCourse);
+
+        if(item.isFolder() && doesModerate)
         {
             treeContextMenu.getItems().add(createFolder);
             treeContextMenu.getItems().add(createFile);
         }
 
-        Company currentCompany = DbManager.getInstance().getCurrentCompany();
-
-        if(currentCompany != null && currentCompany.getId() == item.getOwner().getId())
+        if(doesModerate)
             treeContextMenu.getItems().add(delete);
 
     }
@@ -257,15 +272,17 @@ public class HomeWindowController implements Initializable
         });
 
         deleteCourse.setOnAction(event -> {
-            DbManager.getInstance().DeleteCourse(course);
+            DbManager2.getInstance().DeleteCourse(course.getId());
         });
 
         listContextMenu.getItems().add(giveViewingAccess);
         listContextMenu.getItems().add(giveModeratorAccess);
 
-        Company currentCompany = DbManager.getInstance().getCurrentCompany();
+        User currentUser = DbManager2.getInstance().getCurrentUser();
+        var ownedCourses = DbManager2.getInstance().GetOwnedCourses(currentUser);
+        var doesOwn = ownedCourses.contains(course);
 
-        if(currentCompany != null && currentCompany.IsCreatorOfTheCourse(course))
+        if(doesOwn)
             listContextMenu.getItems().add(deleteCourse);
     }
 
@@ -279,9 +296,9 @@ public class HomeWindowController implements Initializable
             return;
         }
 
-        Folder newFolder = new Folder(parent, input, null);
+        Folder newFolder = new Folder(input, parent.getId());
 
-        DbManager.getInstance().CreateT(newFolder);
+        DbManager2.getInstance().CreateFolder(newFolder);
 
         refreshTree();
     }
@@ -296,9 +313,9 @@ public class HomeWindowController implements Initializable
             return;
         }
 
-        File newFile = new File(parent, input, "");
+        File newFile = new File(parent.getId(), input, "");
 
-        DbManager.getInstance().CreateT(newFile);
+        DbManager2.getInstance().CreateFile(newFile);
 
         refreshTree();
     }
@@ -306,21 +323,21 @@ public class HomeWindowController implements Initializable
     private void GiveViewingAccess(Course course)
     {
         String input = GetUsernameInput();
-        BaseUser person = DbManager.getInstance().GetByUsername(input);
+        User user = DbManager2.getInstance().GetByUsername(input);
 
-        if(person == null || person.isCompany())
+        if(user == null)
         {
             SceneManager.ShowError("Username wasn't found!");
             return;
         }
 
-        course.AppendViewer(person.as(Person.class));
+        DbManager2.getInstance().AddCourseViewer(user, course);
     }
 
     private void GiveModeratorAccess(Course course)
     {
         String input = GetUsernameInput();
-        BaseUser user = DbManager.getInstance().GetByUsername(input);
+        User user = DbManager2.getInstance().GetByUsername(input);
 
         if(user == null)
         {
@@ -381,12 +398,13 @@ public class HomeWindowController implements Initializable
 
         children.add(new TreeItem<>(folder));
 
-        if(folder.IsLeaf())
+        if(folder.isLeaf())
             return;
 
         var index = children.size() - 1;
+        var subFolders = DbManager2.getInstance().GetChildFolders(folder);
 
-        for(var child : folder.getSubFolders())
+        for(var child : subFolders)
             AddSubFolder(child, children.get(index));
 
         AddFiles(folder, parentNode);
@@ -440,12 +458,14 @@ public class HomeWindowController implements Initializable
 
     public void onClickLogOut(ActionEvent actionEvent) throws IOException
     {
-        DbManager.getInstance().setCurrentUser(null);
+        DbManager2.getInstance().setCurrentUser(null);
         SceneManager.LoadScene(WindowResource.login);
     }
 
     public void onClickDeleteUser(ActionEvent actionEvent)
     {
-        DbManager.getInstance().DeleteCurrentUser();
+        User user = DbManager2.getInstance().getCurrentUser();
+
+        DbManager2.getInstance().DeleteUser(user.getId());
     }
 }

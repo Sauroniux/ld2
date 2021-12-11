@@ -1,8 +1,8 @@
 package com.example.ld1.fxControllers;
 
-import com.example.ld1.data.Company;
 import com.example.ld1.data.Course;
-import com.example.ld1.dbManagers.DbManager;
+import com.example.ld1.data.User;
+import com.example.ld1.dbManagers.DbManager2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,14 +37,16 @@ public class CreateCourseWindowController
 
     public void onCreateCourse(ActionEvent actionEvent)
     {
-        Company company = DbManager.getInstance().getCurrentCompany();
-        if(company == null)
+        User user = DbManager2.getInstance().getCurrentUser();
+
+        if(user == null || !user.isCompany())
             return;
 
-        Course course = new Course(titleField.getText(), descriptionField.getText(), company);
-        DbManager.getInstance().CreateT(course);
-        course.AppendModerator(company);
-        course.initRootFolder();
+        Course course = new Course(titleField.getText(), descriptionField.getText(), 0);
+        DbManager2.getInstance().CreateCourse(course);
+        course.AppendModerator(user);
+        DbManager2.getInstance().AddCourseOwner(user, course);
+        course.createRootFolder();
 
         Stage stage = (Stage) titleField.getScene().getWindow();
         stage.close();

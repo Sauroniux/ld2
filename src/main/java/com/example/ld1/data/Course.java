@@ -1,175 +1,87 @@
 package com.example.ld1.data;
 
-import com.example.ld1.dbManagers.DbManager;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.SortNatural;
+import com.example.ld1.dbManagers.DbManager2;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-@Entity
-public class Course extends dbBase implements Comparable<Course>, Serializable
+public class Course extends dbBase
 {
-    private String name;
+    private String title;
     private String description;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @OrderBy("id ASC")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @SortNatural
-    private SortedSet<Company> courseCompanyModerator;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @OrderBy("id ASC")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @SortNatural
-    private SortedSet<Person> coursePersonModerator;
-
-    @ManyToMany(mappedBy = "accessibleCourses", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @OrderBy("id ASC")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @SortNatural
-    private SortedSet<Person> viewers;
-
-    @ManyToOne
-    private Company creator;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Folder rootFolder;
+    private int rootFolderId;
 
     public Course(){}
 
-    public Course(String name, String description, Company creator)
+    public Course(String title, String description)
     {
-        this.name = name;
+        this.title = title;
         this.description = description;
-        this.creator = creator;
+        this.rootFolderId = -1;
     }
 
-    public void initRootFolder()
+    public Course(String title, String description, int rootFolderId)
     {
-        if(rootFolder != null)
-            return;
-
-        rootFolder = new Folder(null, "root_" + name, this);
-
-        DbManager.getInstance().CreateT(rootFolder);
-        DbManager.getInstance().EditT(this);
+        this.title = title;
+        this.description = description;
+        this.rootFolderId = rootFolderId;
     }
 
-    public void addModerator(Company company)
+    public void AppendModerator(User user)
     {
-        courseCompanyModerator.add(company);
-
-        DbManager.getInstance().EditT(this);
+        DbManager2.getInstance().AddCourseModerator(user, this);
     }
 
-    public void AppendModerator(BaseUser user)
+    public void AppendViewer(User user)
     {
-        if(courseCompanyModerator == null)
-            courseCompanyModerator = new TreeSet<>();
-
-        if(user.isPerson())
-            coursePersonModerator.add(user.as(Person.class));
-        else if(user.isCompany())
-            courseCompanyModerator.add(user.as(Company.class));
-
-        DbManager.getInstance().InsertModerator(user, this);
+        DbManager2.getInstance().AddCourseViewer(user, this);
     }
 
-    public void AppendViewer(Person person)
+    public void RemoveModerator(User user)
     {
-        if(viewers == null)
-            viewers = new TreeSet<>();
-
-        person.getAccessibleCourses().add(this);
-        DbManager.getInstance().InsertViewer(person, this);
+        DbManager2.getInstance().RemoveCourseModerator(user, this);
     }
 
-    public boolean DoesPersonHaveAccess(Person person)
+    public void RemoveViewer(User user)
     {
-        return viewers.contains(person);
+        DbManager2.getInstance().RemoveCourseViewer(user, this);
     }
 
-    public String getName()
+    public boolean createRootFolder()
     {
-        return name;
+        Folder rootFolder = new Folder("_root_" + id);
+        var folderId = DbManager2.getInstance().CreateFolder(rootFolder);
+
+        if(folderId == -1)
+        {
+            return false;
+        }
+
+        rootFolderId = folderId;
+
+        DbManager2.getInstance().UpdateCourse(this);
+
+        return true;
     }
 
-    public void setName(String name)
-    {
-        this.name = name;
+    public String getTitle() {
+        return title;
     }
 
-    public String getDescription()
-    {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description)
-    {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public Folder getRootFolder()
-    {
-        return rootFolder;
+    public int getRootFolderId() {
+        return rootFolderId;
     }
 
-    public void setRootFolder(Folder rootFolder)
-    {
-        this.rootFolder = rootFolder;
-    }
-
-    public SortedSet<Person> getViewers()
-    {
-        return viewers;
-    }
-
-    public void setViewers(SortedSet<Person> viewers)
-    {
-        this.viewers = viewers;
-    }
-
-    @Override
-    public int compareTo(Course o)
-    {
-        if(o == null || o.name == null)
-            return 1;
-
-        return name.compareTo(o.name);
-    }
-
-    public Company getCreator()
-    {
-        return creator;
-    }
-
-    public void setCreator(Company creator)
-    {
-        this.creator = creator;
-    }
-
-    public SortedSet<Person> getCoursePersonModerator()
-    {
-        return coursePersonModerator;
-    }
-
-    public void setCoursePersonModerator(SortedSet<Person> coursePersonModerator)
-    {
-        this.coursePersonModerator = coursePersonModerator;
-    }
-
-    public SortedSet<Company> getCourseCompanyModerator()
-    {
-        return courseCompanyModerator;
-    }
-
-    public void setCourseCompanyModerator(SortedSet<Company> courseCompanyModerator)
-    {
-        this.courseCompanyModerator = courseCompanyModerator;
+    public void setRootFolderId(int rootFolderId) {
+        this.rootFolderId = rootFolderId;
     }
 }

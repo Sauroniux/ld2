@@ -1,7 +1,6 @@
 package com.example.ld2.webControllers;
 
 import com.example.ld1.data.dbBase;
-import com.example.ld1.dbManagers.DbManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,10 +27,15 @@ public abstract class BaseWebController<T extends dbBase>
                 .create();
     }
 
+    protected abstract List<T> getAllFromDb();
+    protected abstract T getByIdFromDb(int id);
+    protected abstract void updateInDb(T object);
+    protected abstract void deleteFromDb(int id);
+
     protected String getAll()
     {
         Gson gson = getGson();
-        var all = DbManager.getInstance().<T>GetAll(type);
+        var all = getAllFromDb();
         return gson.toJson(all);
     }
 
@@ -41,7 +45,7 @@ public abstract class BaseWebController<T extends dbBase>
             Gson gson = getGson();
             T objectFromRequest = gson.fromJson(request, type);
 
-            T objectFromDb = DbManager.getInstance().GetById(id, type);
+            T objectFromDb = getByIdFromDb(id);
 
             var idTemp = objectFromDb.getId();
             if(objectFromDb == null || objectFromDb.getId() == 0)
@@ -49,7 +53,7 @@ public abstract class BaseWebController<T extends dbBase>
 
             objectFromDb = setAllExceptId(objectFromRequest, objectFromDb);
 
-            DbManager.getInstance().EditT(objectFromDb);
+            updateInDb(objectFromDb);
 
             return "Success";
         }
@@ -75,16 +79,16 @@ public abstract class BaseWebController<T extends dbBase>
 
         var newObject = setAllExceptId(objectFromRequest, (T)emptyConstructor.newInstance());
 
-        DbManager.getInstance().CreateT(newObject);
+        updateInDb(newObject);
 
         return "Success";
     }
 
     protected String delete(int id)
     {
-        DbManager.getInstance().RemoveById(id, type);
+        deleteFromDb(id);
 
-        var result = DbManager.getInstance().GetById(id, type);
+        var result = getByIdFromDb(id);
 
         if(result == null || result.getId() == 0)
             return "Success";
@@ -107,8 +111,8 @@ public abstract class BaseWebController<T extends dbBase>
 
         for(var method : allMethods)
         {
-            if(!method.getName().startsWith("set") || method.getName().equals("setId"))
-                continue;
+//            if(!method.getName().startsWith("set") || method.getName().equals("setId"))
+//                continue;
 
             var setter = method;
 

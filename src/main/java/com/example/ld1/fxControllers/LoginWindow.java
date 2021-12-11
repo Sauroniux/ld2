@@ -1,7 +1,7 @@
 package com.example.ld1.fxControllers;
 
-import com.example.ld1.data.BaseUser;
-import com.example.ld1.dbManagers.DbManager;
+import com.example.ld1.data.User;
+import com.example.ld1.dbManagers.DbManager2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -39,10 +39,7 @@ public class LoginWindow implements IController
 
     public void OnLoginClick(ActionEvent actionEvent) throws IOException
     {
-        BaseUser user = DbManager.getInstance().CheckLogin(m_Username.getText(), m_PasswordField.getText());
-
-        if(user == null)
-            user = DbManager.getInstance().CheckLogin(m_Username.getText(), m_PasswordField.getText());
+        User user = DbManager2.getInstance().LoginUser(m_Username.getText(), m_PasswordField.getText());
 
         boolean isValidLogin = user != null;
 
@@ -52,7 +49,7 @@ public class LoginWindow implements IController
         }
         else
         {
-            DbManager.getInstance().setCurrentUser(user);
+            DbManager2.getInstance().setCurrentUser(user);
             SceneManager.LoadScene(WindowResource.home);
         }
     }

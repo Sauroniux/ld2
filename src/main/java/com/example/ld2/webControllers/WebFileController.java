@@ -1,11 +1,13 @@
 package com.example.ld2.webControllers;
 
 import com.example.ld1.data.File;
+import com.example.ld1.dbManagers.DbManager2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @Controller
 public class WebFileController extends BaseWebController<File> {
@@ -41,5 +43,29 @@ public class WebFileController extends BaseWebController<File> {
     @ResponseBody
     public String deleteFile(@PathVariable(name = "id") int id) {
         return delete(id);
+    }
+
+    @Override
+    protected List<File> getAllFromDb()
+    {
+        return DbManager2.getInstance().GetAllFiles();
+    }
+
+    @Override
+    protected File getByIdFromDb(int id)
+    {
+        return DbManager2.getInstance().GetFileById(id);
+    }
+
+    @Override
+    protected void updateInDb(File object)
+    {
+        DbManager2.getInstance().UpdateFile(object);
+    }
+
+    @Override
+    protected void deleteFromDb(int id)
+    {
+        DbManager2.getInstance().DeleteFile(id);
     }
 }

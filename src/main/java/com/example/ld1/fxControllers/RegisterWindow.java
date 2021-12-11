@@ -1,9 +1,8 @@
 package com.example.ld1.fxControllers;
 
-import com.example.ld1.data.BaseUser;
-import com.example.ld1.data.Company;
-import com.example.ld1.data.Person;
-import com.example.ld1.dbManagers.DbManager;
+import com.example.ld1.data.AccountType;
+import com.example.ld1.data.User;
+import com.example.ld1.dbManagers.DbManager2;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -85,19 +84,10 @@ public class RegisterWindow implements Initializable
         if(!isInputValid())
             return;
 
-        BaseUser user = null;
+        AccountType accountType = isPerson.isSelected() ? AccountType.Person : AccountType.Company;
+        User user = new User(username.getText(), password1.getText(), secondaryText1.getText(), secondaryText2.getText(), accountType);
 
-        if(isPerson.isSelected())
-        {
-            Person person = new Person(username.getText(), password1.getText(), secondaryText1.getText(), secondaryText2.getText());
-            DbManager.getInstance().CreateT(person);
-        }
-
-        else if(isCompany.isSelected())
-        {
-            Company company = new Company(username.getText(), password1.getText(), secondaryText1.getText(), secondaryText2.getText());
-            DbManager.getInstance().CreateT(company);
-        }
+        DbManager2.getInstance().CreateUser(user);
 
         SceneManager.LoadScene(WindowResource.login);
     }
@@ -141,7 +131,7 @@ public class RegisterWindow implements Initializable
             return false;
         }
 
-        if(DbManager.getInstance().doesUsernameExist(username.getText()))
+        if(DbManager2.getInstance().doesUsernameExist(username.getText()))
         {
             SceneManager.ShowError("Username already exists!");
             return false;

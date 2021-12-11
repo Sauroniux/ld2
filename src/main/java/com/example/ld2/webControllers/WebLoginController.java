@@ -1,27 +1,22 @@
 package com.example.ld2.webControllers;
 
-import com.example.ld1.data.BaseUser;
-import com.example.ld1.data.Company;
-import com.example.ld1.data.Person;
-import com.example.ld1.dbManagers.DbManager;
+import com.example.ld1.dbManagers.DbManager2;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
 
 @Controller
-public class WebLoginController extends BaseWebController<BaseUser>
+public class WebLoginController
 {
     class LoginInfo
     {
         public String username;
         public String password;
-    }
-
-    protected WebLoginController() {
-        super(BaseUser.class);
     }
 
     @RequestMapping(value = "/login/checkLogin", method = RequestMethod.PUT)
@@ -32,22 +27,18 @@ public class WebLoginController extends BaseWebController<BaseUser>
         Gson gson = getGson();
         LoginInfo loginInfo = gson.fromJson(request, LoginInfo.class);
 
-        var allPeople = DbManager.getInstance().<Person>GetAll(Person.class);
+        var result = DbManager2.getInstance().LoginUser(loginInfo.username, loginInfo.password);
 
-        for(var person : allPeople)
-        {
-            if(person.getUsername().equals(loginInfo.username) && person.getPassword().equals(loginInfo.password))
-                return "True";
-        }
+        if(result == null || result.getId() <= 0)
+            return "False";
 
-        var allCompanies = DbManager.getInstance().<Company>GetAll(Company.class);
+        return "True";
+    }
 
-        for(var company : allCompanies)
-        {
-            if(company.getUsername().equals(loginInfo.username) && company.getPassword().equals(loginInfo.password))
-                return "True";
-        }
-
-        return "False";
+    private Gson getGson()
+    {
+        return new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
     }
 }

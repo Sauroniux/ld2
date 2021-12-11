@@ -1,11 +1,13 @@
 package com.example.ld2.webControllers;
 
 import com.example.ld1.data.Course;
+import com.example.ld1.dbManagers.DbManager2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @Controller
 public class WebCourseController extends BaseWebController<Course>
@@ -42,5 +44,29 @@ public class WebCourseController extends BaseWebController<Course>
     @ResponseBody
     public String deleteCourse(@PathVariable(name = "id") int id) {
         return delete(id);
+    }
+
+    @Override
+    protected List<Course> getAllFromDb()
+    {
+        return DbManager2.getInstance().GetAllCourses();
+    }
+
+    @Override
+    protected Course getByIdFromDb(int id)
+    {
+        return DbManager2.getInstance().GetCourseById(id);
+    }
+
+    @Override
+    protected void updateInDb(Course object)
+    {
+        DbManager2.getInstance().UpdateCourse(object);
+    }
+
+    @Override
+    protected void deleteFromDb(int id)
+    {
+        DbManager2.getInstance().DeleteCourse(id);
     }
 }

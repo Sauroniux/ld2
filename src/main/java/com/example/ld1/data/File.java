@@ -1,32 +1,23 @@
 package com.example.ld1.data;
 
-import com.example.ld1.dbManagers.DbManager;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import java.io.Serializable;
 
-@Entity
-public class File extends FileSystemItem implements Serializable
+public class File  extends dbBase implements FileSystemItem
 {
+    private int folderId;
+    private String name;
     private String content;
 
-    @ManyToOne
-    private Folder folder;
-
-    public File(){}
-
-    @Override
-    public void DeleteAndCleanup()
+    public File(int folderId, String name, String content)
     {
-        DbManager.getInstance().AddObjectToCleanup(this);
+        id = -1;
+        this.folderId = folderId;
+        this.name = name;
+        this.content = content;
     }
 
-    public File(Folder parent, String name, String content)
-    {
-        super(name);
-        this.content = content;
-        this.folder = parent;
+    public <T> T as(Class<T> t) {
+        return t.isInstance(this) ? t.cast(this) : null;
     }
 
     public String getFileExtension()
@@ -37,14 +28,48 @@ public class File extends FileSystemItem implements Serializable
         return getName().substring(lastIndex, getName().length() - 1);
     }
 
-    public Folder getFolder()
+    @Override
+    public String getDisplayName()
     {
-        return folder;
+        return name;
     }
 
-    public void setFolder(Folder folder)
+    @Override
+    public void setDisplayName(String name)
     {
-        this.folder = folder;
+        this.name = name;
+    }
+
+    @Override
+    public boolean isFolder()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFile()
+    {
+        return true;
+    }
+
+    public int getFolderId()
+    {
+        return folderId;
+    }
+
+    public void setFolderId(int folderId)
+    {
+        this.folderId = folderId;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
     public String getContent()

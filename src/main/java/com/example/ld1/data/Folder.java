@@ -1,99 +1,85 @@
 package com.example.ld1.data;
 
-import com.example.ld1.dbManagers.DbManager;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.SortNatural;
+import com.example.ld1.dbManagers.DbManager2;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.List;
 
-@Entity
-public class Folder extends FileSystemItem implements Serializable
+public class Folder extends dbBase implements FileSystemItem
 {
-    @OneToOne(mappedBy = "rootFolder", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Course parentCourse;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Folder parent;
-
-    @OneToMany(mappedBy = "parent", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @OrderBy("id ASC")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @SortNatural
-    private SortedSet<Folder> subFolders = new TreeSet<>();
-
-    @OneToMany(mappedBy = "folder", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @OrderBy("id ASC")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @SortNatural
-    private SortedSet<File> folderFiles = new TreeSet<>();
+    private String name;
+    private int parentId;
 
     public Folder(){}
 
+    public Folder(String name)
+    {
+        this.name = name;
+        this.parentId = -1;
+    }
+
+    public Folder(String name, int parentId)
+    {
+        this.name = name;
+        this.parentId = parentId;
+    }
+
+    public <T> T as(Class<T> t) {
+        return t.isInstance(this) ? t.cast(this) : null;
+    }
+
+    public boolean isLeaf()
+    {
+        var children = DbManager2.getInstance().GetChildFolders(this);
+
+        return children == null || children.size() == 0;
+    }
+
+    public List<File> getFolderFiles()
+    {
+        return DbManager2.getInstance().GetChildFiles(this);
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
     @Override
-    public void DeleteAndCleanup()
+    public String getDisplayName()
     {
-        for(var file : folderFiles)
-            file.DeleteAndCleanup();
-
-        for(var folder : subFolders)
-            folder.DeleteAndCleanup();
-
-        DbManager.getInstance().AddObjectToCleanup(this);
+        return name;
     }
 
-    public Folder(Folder parent, String name, Course owner)
+    @Override
+    public void setDisplayName(String name)
     {
-        super(name);
-        this.parent = parent;
-        this.parentCourse = owner;
+        this.name = name;
     }
 
-    public Folder getRoot()
+    @Override
+    public boolean isFolder()
     {
-        if(IsRoot())
-            return this;
-
-        return parent.getRoot();
+        return true;
     }
 
-    public boolean IsRoot()
+    @Override
+    public boolean isFile()
     {
-        return parent == null;
+        return false;
     }
 
-    public boolean IsLeaf() {return subFolders == null || subFolders.size() == 0; }
-
-    public SortedSet<Folder> getSubFolders()
+    public int getParentId()
     {
-        return subFolders;
+        return parentId;
     }
 
-    public void setSubFolders(SortedSet<Folder> subFolders)
+    public void setParentId(int parentId)
     {
-        this.subFolders = subFolders;
-    }
-
-    public SortedSet<File> getFolderFiles()
-    {
-        return folderFiles;
-    }
-
-    public void setFolderFiles(SortedSet<File> folderFiles)
-    {
-        this.folderFiles = folderFiles;
-    }
-
-    public Course getParentCourse()
-    {
-        return parentCourse;
-    }
-
-    public void setParentCourse(Course parentCourse)
-    {
-        this.parentCourse = parentCourse;
+        this.parentId = parentId;
     }
 }

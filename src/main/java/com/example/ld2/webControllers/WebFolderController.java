@@ -1,11 +1,13 @@
 package com.example.ld2.webControllers;
 
 import com.example.ld1.data.Folder;
+import com.example.ld1.dbManagers.DbManager2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @Controller
 public class WebFolderController extends BaseWebController<Folder> {
@@ -41,5 +43,29 @@ public class WebFolderController extends BaseWebController<Folder> {
     @ResponseBody
     public String deleteFolder(@PathVariable(name = "id") int id) {
         return delete(id);
+    }
+
+    @Override
+    protected List<Folder> getAllFromDb()
+    {
+        return DbManager2.getInstance().GetAllFolders();
+    }
+
+    @Override
+    protected Folder getByIdFromDb(int id)
+    {
+        return DbManager2.getInstance().GetFolderById(id);
+    }
+
+    @Override
+    protected void updateInDb(Folder object)
+    {
+        DbManager2.getInstance().UpdateFolder(object);
+    }
+
+    @Override
+    protected void deleteFromDb(int id)
+    {
+        DbManager2.getInstance().DeleteFolder(id);
     }
 }
