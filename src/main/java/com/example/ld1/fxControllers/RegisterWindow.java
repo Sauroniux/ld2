@@ -2,7 +2,7 @@ package com.example.ld1.fxControllers;
 
 import com.example.ld1.data.AccountType;
 import com.example.ld1.data.User;
-import com.example.ld1.dbManagers.DbManager2;
+import com.example.ld1.dbManagers.UserDbManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -87,7 +87,7 @@ public class RegisterWindow implements Initializable
         AccountType accountType = isPerson.isSelected() ? AccountType.Person : AccountType.Company;
         User user = new User(username.getText(), password1.getText(), secondaryText1.getText(), secondaryText2.getText(), accountType);
 
-        DbManager2.getInstance().CreateUser(user);
+        UserDbManager.getInstance().CreateUser(user);
 
         SceneManager.LoadScene(WindowResource.login);
     }
@@ -131,7 +131,7 @@ public class RegisterWindow implements Initializable
             return false;
         }
 
-        if(DbManager2.getInstance().doesUsernameExist(username.getText()))
+        if(UserDbManager.getInstance().doesUsernameExist(username.getText()))
         {
             SceneManager.ShowError("Username already exists!");
             return false;

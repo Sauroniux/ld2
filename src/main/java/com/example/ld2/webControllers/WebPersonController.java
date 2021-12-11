@@ -1,7 +1,7 @@
 package com.example.ld2.webControllers;
 
         import com.example.ld1.data.User;
-        import com.example.ld1.dbManagers.DbManager2;
+        import com.example.ld1.dbManagers.UserDbManager;
         import org.springframework.http.HttpStatus;
         import org.springframework.stereotype.Controller;
         import org.springframework.web.bind.annotation.*;
@@ -49,24 +49,24 @@ public class WebPersonController extends BaseWebController<User>
     @Override
     protected List<User> getAllFromDb()
     {
-        return DbManager2.getInstance().GetAllUsers();
+        return UserDbManager.getInstance().GetAllUsers();
     }
 
     @Override
     protected User getByIdFromDb(int id)
     {
-        return DbManager2.getInstance().GetUserById(id);
+        return UserDbManager.getInstance().GetUserById(id);
     }
 
     @Override
     protected void updateInDb(User object)
     {
-        DbManager2.getInstance().UpdateUser(object);
+        UserDbManager.getInstance().UpdateUser(object);
     }
 
     @Override
     protected void deleteFromDb(int id)
     {
-        DbManager2.getInstance().DeleteUser(id);
+        UserDbManager.getInstance().DeleteUser(id);
     }
 }

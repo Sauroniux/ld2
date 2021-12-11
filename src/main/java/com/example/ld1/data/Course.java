@@ -1,6 +1,8 @@
 package com.example.ld1.data;
 
-import com.example.ld1.dbManagers.DbManager2;
+import com.example.ld1.dbManagers.CourseDbManager;
+import com.example.ld1.dbManagers.FolderDbManager;
+import com.example.ld1.dbManagers.RelationshipDbManager;
 
 public class Course extends dbBase
 {
@@ -26,28 +28,28 @@ public class Course extends dbBase
 
     public void AppendModerator(User user)
     {
-        DbManager2.getInstance().AddCourseModerator(user, this);
+        RelationshipDbManager.getInstance().AddCourseModerator(user, this);
     }
 
     public void AppendViewer(User user)
     {
-        DbManager2.getInstance().AddCourseViewer(user, this);
+        RelationshipDbManager.getInstance().AddCourseViewer(user, this);
     }
 
     public void RemoveModerator(User user)
     {
-        DbManager2.getInstance().RemoveCourseModerator(user, this);
+        RelationshipDbManager.getInstance().RemoveCourseModerator(user, this);
     }
 
     public void RemoveViewer(User user)
     {
-        DbManager2.getInstance().RemoveCourseViewer(user, this);
+        RelationshipDbManager.getInstance().RemoveCourseViewer(user, this);
     }
 
     public boolean createRootFolder()
     {
         Folder rootFolder = new Folder("_root_" + id);
-        var folderId = DbManager2.getInstance().CreateFolder(rootFolder);
+        var folderId = FolderDbManager.getInstance().CreateFolder(rootFolder);
 
         if(folderId == -1)
         {
@@ -56,7 +58,7 @@ public class Course extends dbBase
 
         rootFolderId = folderId;
 
-        DbManager2.getInstance().UpdateCourse(this);
+        CourseDbManager.getInstance().UpdateCourse(this);
 
         return true;
     }

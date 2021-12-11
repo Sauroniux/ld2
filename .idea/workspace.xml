@@ -10,60 +10,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f9801d-e689-4af5-b11e-16cd23752e86" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Desktop_App.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/AccountType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/CourseDbManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/CourseUserPair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManagerBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/FileDbManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/FolderDbManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/RelationshipDbManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/UserDbManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/BaseUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Company.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/FileSystemItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/FileSystemItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Folder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/dbBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/dbBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/Dummy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/FactoryHelper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/CreateCourseWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/CreateCourseWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/LoginWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/RegisterWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/RegisterWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/BaseWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/BaseWebController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebCompanyController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebCourseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFolderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebFolderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebLoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebPersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebPersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/BaseUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Company.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Course.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/File.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/FileSystemItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Folder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Person.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/dbBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/dbManagers/DbManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Folder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Folder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/dbManagers/DbManager2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/dbManagers/Dummy.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/dbManagers/FactoryHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/LoginWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/RegisterWindow$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/RegisterWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/BaseWebController$AccessPair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/BaseWebController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebCompanyController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebCourseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFileController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFolderController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController$LoginInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebPersonController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/LoginWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/LoginWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/RegisterWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/RegisterWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebCourseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFolderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebFolderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebPersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebPersonController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +206,8 @@
       <workItem from="1638408094175" duration="553000" />
       <workItem from="1639072362115" duration="10223000" />
       <workItem from="1639187069442" duration="3158000" />
-      <workItem from="1639190298478" duration="5592000" />
+      <workItem from="1639190298478" duration="5776000" />
+      <workItem from="1639223229248" duration="10389000" />
     </task>
     <servers />
   </component>
@@ -245,24 +230,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java</url>
-          <line>212</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/FactoryHelper.java</url>
-          <line>218</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/Dummy.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebPersonController.java</url>
           <line>38</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java</url>
+          <line>416</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java</url>
+          <line>399</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

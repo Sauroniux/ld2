@@ -1,7 +1,7 @@
 package com.example.ld2.webControllers;
 
 import com.example.ld1.data.File;
-import com.example.ld1.dbManagers.DbManager2;
+import com.example.ld1.dbManagers.FileDbManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -48,24 +48,24 @@ public class WebFileController extends BaseWebController<File> {
     @Override
     protected List<File> getAllFromDb()
     {
-        return DbManager2.getInstance().GetAllFiles();
+        return FileDbManager.getInstance().GetAllFiles();
     }
 
     @Override
     protected File getByIdFromDb(int id)
     {
-        return DbManager2.getInstance().GetFileById(id);
+        return FileDbManager.getInstance().GetFileById(id);
     }
 
     @Override
     protected void updateInDb(File object)
     {
-        DbManager2.getInstance().UpdateFile(object);
+        FileDbManager.getInstance().UpdateFile(object);
     }
 
     @Override
     protected void deleteFromDb(int id)
     {
-        DbManager2.getInstance().DeleteFile(id);
+        FileDbManager.getInstance().DeleteFile(id);
     }
 }

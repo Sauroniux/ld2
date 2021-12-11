@@ -1,7 +1,7 @@
 package com.example.ld2.webControllers;
 
 import com.example.ld1.data.Course;
-import com.example.ld1.dbManagers.DbManager2;
+import com.example.ld1.dbManagers.CourseDbManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -49,24 +49,24 @@ public class WebCourseController extends BaseWebController<Course>
     @Override
     protected List<Course> getAllFromDb()
     {
-        return DbManager2.getInstance().GetAllCourses();
+        return CourseDbManager.getInstance().GetAllCourses();
     }
 
     @Override
     protected Course getByIdFromDb(int id)
     {
-        return DbManager2.getInstance().GetCourseById(id);
+        return CourseDbManager.getInstance().GetCourseById(id);
     }
 
     @Override
     protected void updateInDb(Course object)
     {
-        DbManager2.getInstance().UpdateCourse(object);
+        CourseDbManager.getInstance().UpdateCourse(object);
     }
 
     @Override
     protected void deleteFromDb(int id)
     {
-        DbManager2.getInstance().DeleteCourse(id);
+        CourseDbManager.getInstance().DeleteCourse(id);
     }
 }

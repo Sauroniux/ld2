@@ -1,6 +1,6 @@
 package com.example.ld2.webControllers;
 
-import com.example.ld1.dbManagers.DbManager2;
+import com.example.ld1.dbManagers.UserDbManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,7 @@ public class WebLoginController
         Gson gson = getGson();
         LoginInfo loginInfo = gson.fromJson(request, LoginInfo.class);
 
-        var result = DbManager2.getInstance().LoginUser(loginInfo.username, loginInfo.password);
+        var result = UserDbManager.getInstance().LoginUser(loginInfo.username, loginInfo.password);
 
         if(result == null || result.getId() <= 0)
             return "False";

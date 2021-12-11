@@ -1,6 +1,6 @@
 package com.example.ld1.data;
 
-import com.example.ld1.dbManagers.DbManager2;
+import com.example.ld1.dbManagers.RelationshipDbManager;
 
 import java.util.List;
 
@@ -29,14 +29,14 @@ public class Folder extends dbBase implements FileSystemItem
 
     public boolean isLeaf()
     {
-        var children = DbManager2.getInstance().GetChildFolders(this);
+        var children = RelationshipDbManager.getInstance().GetChildFolders(this);
 
         return children == null || children.size() == 0;
     }
 
     public List<File> getFolderFiles()
     {
-        return DbManager2.getInstance().GetChildFiles(this);
+        return RelationshipDbManager.getInstance().GetChildFiles(this);
     }
 
     public String getName()
