@@ -1,6 +1,7 @@
 package com.example.ld2.webControllers;
 
 import com.example.ld1.data.Course;
+import com.example.ld1.data.Folder;
 import com.example.ld1.data.User;
 import com.example.ld1.dbManagers.RelationshipDbManager;
 import com.google.gson.Gson;
@@ -23,7 +24,7 @@ public class RelationshipController
                 .create();
     }
 
-    @RequestMapping(value = "/rel/addOwner/{userId}/{courseId}}", method = RequestMethod.POST)
+    @RequestMapping(value = "/rel/addOwner/{userId}/{courseId}", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String AddNewOwnerPair(@PathVariable(name = "userId") int userId, @PathVariable(name = "courseId") int courseId)
@@ -31,7 +32,7 @@ public class RelationshipController
         return AddPair(userId, courseId, (a, b) -> RelationshipDbManager.getInstance().AddCourseOwner(a, b));
     }
 
-    @RequestMapping(value = "/rel/addModerator/{userId}/{courseId}}", method = RequestMethod.POST)
+    @RequestMapping(value = "/rel/addModerator/{userId}/{courseId}", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String AddNewModeratorPair(@PathVariable(name = "userId") int userId, @PathVariable(name = "courseId") int courseId)
@@ -39,7 +40,7 @@ public class RelationshipController
         return AddPair(userId, courseId, (a, b) -> RelationshipDbManager.getInstance().AddCourseModerator(a, b));
     }
 
-    @RequestMapping(value = "/rel/addViewer/{userId}/{courseId}}", method = RequestMethod.POST)
+    @RequestMapping(value = "/rel/addViewer/{userId}/{courseId}", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String AddNewViewerPair(@PathVariable(name = "userId") int userId, @PathVariable(name = "courseId") int courseId)
@@ -47,7 +48,7 @@ public class RelationshipController
         return AddPair(userId, courseId, (a, b) -> RelationshipDbManager.getInstance().AddCourseViewer(a, b));
     }
 
-    @RequestMapping(value = "/rel/removeModerator/{userId}/{courseId}}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rel/removeModerator/{userId}/{courseId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String RemoveModeratorPair(@PathVariable(name = "userId") int userId, @PathVariable(name = "courseId") int courseId)
@@ -55,7 +56,7 @@ public class RelationshipController
         return AddPair(userId, courseId, (a, b) -> RelationshipDbManager.getInstance().RemoveCourseModerator(a, b));
     }
 
-    @RequestMapping(value = "/rel/removeViewer/{userId}/{courseId}}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rel/removeViewer/{userId}/{courseId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String RemoveViewerPair(@PathVariable(name = "userId") int userId, @PathVariable(name = "courseId") int courseId)
@@ -63,7 +64,7 @@ public class RelationshipController
         return AddPair(userId, courseId, (a, b) -> RelationshipDbManager.getInstance().RemoveCourseViewer(a, b));
     }
 
-    @RequestMapping(value = "/rel/getModerated/{userId}/}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rel/getModerated/{userId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String GetModerated(@PathVariable(name = "userId") int userId)
@@ -71,7 +72,7 @@ public class RelationshipController
         return GetUserCourses(userId, (a) -> RelationshipDbManager.getInstance().GetModeratedCoursesObjects(a));
     }
 
-    @RequestMapping(value = "/rel/getOwned/{userId}/}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rel/getOwned/{userId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String GetOwned(@PathVariable(name = "userId") int userId)
@@ -79,7 +80,7 @@ public class RelationshipController
         return GetUserCourses(userId, (a) -> RelationshipDbManager.getInstance().GetOwnedCourses(a));
     }
 
-    @RequestMapping(value = "/rel/getViewed/{userId}/}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rel/getViewed/{userId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String GetViewed(@PathVariable(name = "userId") int userId)
@@ -87,7 +88,7 @@ public class RelationshipController
         return GetUserCourses(userId, (a) -> RelationshipDbManager.getInstance().GetViewedCoursesObjects(a));
     }
 
-    @RequestMapping(value = "/rel/getModerators/{courseId}/}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rel/getModerators/{courseId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String GetModerators(@PathVariable(name = "courseId") int courseId)
@@ -95,13 +96,42 @@ public class RelationshipController
         return GetCourseUsers(courseId, (a) -> RelationshipDbManager.getInstance().GetCourseModeratorsObjects(a));
     }
 
-    @RequestMapping(value = "/rel/getViewers/{courseId}/}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rel/getViewers/{courseId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public String GetViewers(@PathVariable(name = "courseId") int courseId)
     {
         return GetCourseUsers(courseId, (a) -> RelationshipDbManager.getInstance().GetCourseViewersObjects(a));
     }
+
+    @RequestMapping(value = "/rel/getChildFolders/{folderId}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseBody
+    public String GetChildFolders(@PathVariable(name = "folderId") int folderId)
+    {
+        var tempFolder = new Folder();
+        tempFolder.setId(folderId);
+
+        var resultList = RelationshipDbManager.getInstance().GetChildFolders(tempFolder);
+
+        Gson gson = getGson();
+        return gson.toJson(resultList);
+    }
+
+    @RequestMapping(value = "/rel/getChildFiles/{folderId}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseBody
+    public String GetChildFiles(@PathVariable(name = "folderId") int folderId)
+    {
+        var tempFolder = new Folder();
+        tempFolder.setId(folderId);
+
+        var resultList = RelationshipDbManager.getInstance().GetChildFiles(tempFolder);
+
+        Gson gson = getGson();
+        return gson.toJson(resultList);
+    }
+
 
     private interface TwoIdOperation {
         public void op(User user, Course course);

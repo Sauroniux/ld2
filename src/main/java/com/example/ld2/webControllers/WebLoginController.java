@@ -32,7 +32,7 @@ public class WebLoginController
         if(result == null || result.getId() <= 0)
             return "False";
 
-        return "True";
+        return String.valueOf(result.getId());
     }
 
     private Gson getGson()

@@ -10,9 +10,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f9801d-e689-4af5-b11e-16cd23752e86" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/RelationshipController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/File.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/File.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/FileSystemItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/FileSystemItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/Folder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/Folder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/dbBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/data/dbBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$4$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/HomeWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/LoginWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/LoginWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/RegisterWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/RegisterWindow$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/RegisterWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld1/fxControllers/RegisterWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/BaseWebController$AccessPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/BaseWebController$AccessPair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/BaseWebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/BaseWebController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebCourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebCourseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebFileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebFileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebFolderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebFolderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebLoginController$LoginInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebLoginController$LoginInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebLoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebPersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/com/example/ld2/webControllers/WebPersonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ld1_war_exploded/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/BaseWebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/BaseWebController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/RelationshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/RelationshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld2/webControllers/WebLoginController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,13 +108,13 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="azul-17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/ld1/data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LD3" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.47550112" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
     <property name="settings.editor.splitter.proportion" value="0.21231422" />
   </component>
   <component name="RecentsManager">
@@ -100,7 +128,7 @@
       <recent name="com.example.ld1" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Desktop App">
+  <component name="RunManager" selected="Tomcat Server.Serveris">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
@@ -174,6 +202,7 @@
       <workItem from="1639190298478" duration="5776000" />
       <workItem from="1639223229248" duration="15470000" />
       <workItem from="1639263385968" duration="11487000" />
+      <workItem from="1639324435267" duration="4069000" />
     </task>
     <servers />
   </component>

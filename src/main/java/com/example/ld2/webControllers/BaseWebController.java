@@ -111,8 +111,8 @@ public abstract class BaseWebController<T extends dbBase>
 
         for(var method : allMethods)
         {
-//            if(!method.getName().startsWith("set") || method.getName().equals("setId"))
-//                continue;
+            if(!method.getName().startsWith("set"))
+                continue;
 
             var setter = method;
 
