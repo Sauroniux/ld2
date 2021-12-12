@@ -39,6 +39,11 @@ public class Folder extends dbBase implements FileSystemItem
         return RelationshipDbManager.getInstance().GetChildFiles(this);
     }
 
+    public List<Folder> getSubFolders()
+    {
+        return RelationshipDbManager.getInstance().GetChildFolders(this);
+    }
+
     public String getName()
     {
         return name;

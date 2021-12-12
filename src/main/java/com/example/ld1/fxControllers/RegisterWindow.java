@@ -94,7 +94,6 @@ public class RegisterWindow implements Initializable
 
     private boolean isInputValid()
     {
-
         if(username.getText().isEmpty())
         {
             SceneManager.ShowError("Username is empty!");

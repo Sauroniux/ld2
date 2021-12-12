@@ -56,7 +56,7 @@ public class CreateCourseWindowController
 
         Stage stage = (Stage) titleField.getScene().getWindow();
         stage.close();
-        master.initData();
+        master.init();
     }
 
     public void onClickCancel(ActionEvent actionEvent)

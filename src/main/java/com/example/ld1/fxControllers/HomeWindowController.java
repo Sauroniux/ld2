@@ -33,9 +33,6 @@ public class HomeWindowController implements Initializable
     @FXML
     private MenuItem createCourseMenuItem;
 
-    private List<Course> viewableCourses;
-    private List<Course> moderatedCourses;
-
     private final ContextMenu treeContextMenu = new ContextMenu();
     private final ContextMenu listContextMenu = new ContextMenu();
 
@@ -44,20 +41,61 @@ public class HomeWindowController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        User currentUser = UserDbManager.getInstance().getCurrentUser();
-        createCourseMenuItem.setDisable(currentUser.getAccountType() == AccountType.Person);
         init();
     }
 
-    private void init()
+    public void init()
     {
-        initData();
+        User currentUser = UserDbManager.getInstance().getCurrentUser();
+        createCourseMenuItem.setDisable(currentUser.getAccountType() == AccountType.Person);
+
+        InitCourses();
+        InitTree();
+    }
+
+    private void InitCourses()
+    {
+        ObservableList<Course> viewableListContent = FXCollections.observableArrayList();
+        ObservableList<Course> moderatedListContent = FXCollections.observableArrayList();
+
+        User currentUser = UserDbManager.getInstance().getCurrentUser();
+
+        if(currentUser == null)
+        {
+            SceneManager.ShowError("Current user is uninitialized");
+            return;
+        }
+
+        boolean isAdmin = currentUser.isAdmin();
+
+        List<Course> viewedCourses;
+        List<Course> moderatedCourses;
+
+        if(isAdmin)
+        {
+            viewedCourses = null;
+            moderatedCourses = CourseDbManager.getInstance().GetAllCourses();
+        }
+        else
+        {
+            viewedCourses = RelationshipDbManager.getInstance().GetViewedCoursesObjects(currentUser);
+            moderatedCourses = RelationshipDbManager.getInstance().GetModeratedCoursesObjects(currentUser);
+        }
+
+        viewableListContent.addAll(viewedCourses);
+        moderatedListContent.addAll(moderatedCourses);
+
+        viewableCourseList.setItems(viewableListContent);
+        moderatedCourseList.setItems(moderatedListContent);
+
+        viewableCourseList.setCellFactory(renderCourseItem());
+        moderatedCourseList.setCellFactory(renderCourseItem());
 
         viewableCourseList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Course>() {
             @Override
             public void changed(ObservableValue<? extends Course> observable, Course oldValue, Course newValue) {
                 selectedCourse = newValue;
-                initTree(newValue);
+                InitTree();
                 expandAll();
             }
         });
@@ -66,126 +104,54 @@ public class HomeWindowController implements Initializable
             @Override
             public void changed(ObservableValue<? extends Course> observable, Course oldValue, Course newValue) {
                 selectedCourse = newValue;
-                initTree(newValue);
+                InitTree();
                 expandAll();
+            }
+        });
+
+        moderatedCourseList.addEventHandler(MouseEvent.MOUSE_RELEASED, e->{
+            if (e.getButton() == MouseButton.SECONDARY)
+            {
+                var selected = moderatedCourseList.getSelectionModel().getSelectedItem();
+
+                if (selected!=null)
+                    openListContextMenu(selected, e.getScreenX(), e.getScreenY());
+            }
+            else
+            {
+                treeContextMenu.hide();
             }
         });
     }
 
-    public void initData()
+    private void InitTree()
     {
-        fetchAllCourses();
+        Course course = selectedCourse;
 
-        ObservableList<Course> viewableListContent = FXCollections.observableArrayList();
-        ObservableList<Course> moderatedListContent = FXCollections.observableArrayList();
-
-        if(viewableCourses != null)
-        {
-            for(var course : viewableCourses)
-                if(moderatedCourses != null && !moderatedCourses.contains(course))
-                    viewableListContent.add(course);
-        }
-        if (moderatedCourses != null)
-        {
-            moderatedListContent.addAll(moderatedCourses);
-        }
-
-        viewableCourseList.setItems(viewableListContent);
-        moderatedCourseList.setItems(moderatedListContent);
-
-        Callback<ListView<Course>, ListCell<Course>> callback = param -> new ListCell<Course>() {
-            @Override
-            protected void updateItem(Course item, boolean empty) {
-                super.updateItem(item, empty);
-
-                if (empty || item == null || item.getTitle() == null)
-                {
-                    setText(null);
-                    return;
-                }
-
-                setText(item.getTitle());
-            }
-        };
-
-        viewableCourseList.setCellFactory(callback);
-
-        moderatedCourseList.setCellFactory(callback);
-    }
-
-    private void fetchAllCourses()
-    {
-        User currentUser = UserDbManager.getInstance().getCurrentUser();
-        viewableCourses  = RelationshipDbManager.getInstance().GetViewedCoursesObjects(currentUser);
-        moderatedCourses = RelationshipDbManager.getInstance().GetModeratedCoursesObjects(currentUser);
-    }
-
-    private void initTree(Course course)
-    {
         if(course == null)
             return;
 
         int rootFolderId = course.getRootFolderId();
         Folder rootFolder = FolderDbManager.getInstance().GetFolder(rootFolderId);
+        var subFolders = rootFolder.getSubFolders();
 
         TreeItem<FileSystemItem> rootItem = new TreeItem<FileSystemItem>(rootFolder);
-        var subFolders = RelationshipDbManager.getInstance().GetChildFolders(rootFolder);
+
         for(var folder : subFolders)
-        {
             AddSubFolder(folder, rootItem);
-        }
 
         AddFiles(rootFolder, rootItem);
 
         treeView.setRoot(rootItem);
 
-        treeView.setCellFactory(new Callback<TreeView<FileSystemItem>,TreeCell<FileSystemItem>>(){
-            @Override
-            public TreeCell<FileSystemItem> call(TreeView<FileSystemItem> p) {
-                TreeCell<FileSystemItem> cell = new TreeCell<FileSystemItem>() {
-                    @Override
-                    protected void updateItem(FileSystemItem file, boolean empty) {
-                        super.updateItem(file, empty);
-                        if (empty)
-                        {
-                            setText(null);
-                        }
-                        else
-                        {
-                            setText(file.getDisplayName());
-
-                            if(file.isFile())
-                                setTextFill(GetColor(File.class.cast(file).getFileExtension()));
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
+        treeView.setCellFactory(getRenderTreeItem());
 
         treeView.addEventHandler(MouseEvent.MOUSE_RELEASED, e->{
             if (e.getButton() == MouseButton.SECONDARY) {
                 TreeItem<FileSystemItem> selected = treeView.getSelectionModel().getSelectedItem();
 
-                if (selected!=null)
-                {
+                if (selected != null)
                     openTreeContextMenu(selected, e.getScreenX(), e.getScreenY());
-                }
-            }
-            else
-            {
-                treeContextMenu.hide();
-            }
-        });
-
-        moderatedCourseList.addEventHandler(MouseEvent.MOUSE_RELEASED, e->{
-            if (e.getButton() == MouseButton.SECONDARY) {
-                var selected = moderatedCourseList.getSelectionModel().getSelectedItem();
-
-                if (selected!=null)
-                {
-                    openListContextMenu(selected, e.getScreenX(), e.getScreenY());
-                }
             }
             else
             {
@@ -194,99 +160,17 @@ public class HomeWindowController implements Initializable
         });
     }
 
-    private void openTreeContextMenu(TreeItem<FileSystemItem> item, double x, double y) {
-        createTreeContextMenu(item);
-        treeContextMenu.show(treeView, x, y);
-    }
-
-    private void openListContextMenu(Course course, double x, double y) {
-        createListContextMenu(course);
-        listContextMenu.show(moderatedCourseList, x, y);
-    }
-
-    private void createTreeContextMenu(TreeItem<FileSystemItem> cell) {
-        FileSystemItem item = cell.getValue();
-
-        if(item == null)
-            return;
-
-        treeContextMenu.getItems().clear();
-
-        MenuItem createFolder = new MenuItem("Create Folder");
-        MenuItem createFile = new MenuItem("Create File");
-        MenuItem delete = new MenuItem("Delete");
-
-        createFolder.setOnAction(event -> {
-                CreateFolder(item.as(Folder.class));
-        });
-
-        createFile.setOnAction(event -> {
-                CreateFile(item.as(Folder.class));
-        });
-
-        delete.setOnAction(event -> {
-            if(item.isFile())
-            {
-                File file = item.as(File.class);
-                FileDbManager.getInstance().DeleteFile(file.getId());
-                initTree(selectedCourse);
-            }
-            else if(item.isFolder())
-            {
-                Folder folder = item.as(Folder.class);
-                FolderDbManager.getInstance().DeleteFolder(folder.getId());
-                initTree(selectedCourse);
-            }
-        });
-
-        var currentUser = UserDbManager.getInstance().getCurrentUser();
-        var moderatedCourses = RelationshipDbManager.getInstance().GetModeratedCoursesIds(currentUser);
-        var doesModerate = moderatedCourses.contains(selectedCourse.getId());
-
-        if(item.isFolder() && doesModerate)
-        {
-            treeContextMenu.getItems().add(createFolder);
-            treeContextMenu.getItems().add(createFile);
-        }
-
-        if(doesModerate)
-            treeContextMenu.getItems().add(delete);
-
-    }
-
-    private void createListContextMenu(Course course)
+    private void RefreshTree()
     {
-        if(course == null)
-            return;
+        int viewableListIndex = viewableCourseList.getSelectionModel().getSelectedIndex();
+        int moderatedListIndex = moderatedCourseList.getSelectionModel().getSelectedIndex();
+        var selectedFileItem = treeView.getSelectionModel().getSelectedItem();
 
-        listContextMenu.getItems().clear();
+        init();
 
-        MenuItem giveViewingAccess = new MenuItem("Give viewing access");
-        MenuItem giveModeratorAccess = new MenuItem("Give moderator access");
-        MenuItem deleteCourse = new MenuItem("Delete");
-
-        giveViewingAccess.setOnAction(event -> {
-            GiveViewingAccess(course);
-        });
-
-        giveModeratorAccess.setOnAction(event -> {
-            GiveModeratorAccess(course);
-        });
-
-        deleteCourse.setOnAction(event -> {
-            CourseDbManager.getInstance().DeleteCourse(course.getId());
-            init();
-        });
-
-        listContextMenu.getItems().add(giveViewingAccess);
-        listContextMenu.getItems().add(giveModeratorAccess);
-
-        User currentUser = UserDbManager.getInstance().getCurrentUser();
-        var ownedCourses = RelationshipDbManager.getInstance().GetOwnedCoursesIds(currentUser);
-        var doesOwn = ownedCourses.contains(course.getId());
-
-        if(doesOwn)
-            listContextMenu.getItems().add(deleteCourse);
+        viewableCourseList.getSelectionModel().select(viewableListIndex);
+        moderatedCourseList.getSelectionModel().select(moderatedListIndex);
+        treeView.getSelectionModel().select(selectedFileItem);
     }
 
     private void CreateFolder(Folder parent)
@@ -303,7 +187,7 @@ public class HomeWindowController implements Initializable
 
         FolderDbManager.getInstance().CreateFolder(newFolder);
 
-        refreshTree();
+        RefreshTree();
     }
 
     private void CreateFile(Folder parent)
@@ -320,7 +204,7 @@ public class HomeWindowController implements Initializable
 
         FileDbManager.getInstance().CreateFile(newFile);
 
-        refreshTree();
+        RefreshTree();
     }
 
     private void GiveViewingAccess(Course course)
@@ -372,28 +256,7 @@ public class HomeWindowController implements Initializable
         td.showAndWait();
 
         return td.getEditor().getText();
-
     }
-
-    private static Color GetColor(String fileName)
-    {
-        int hash = fileName.hashCode();
-        int r = (hash & 0xFF0000) >> 16;
-        int g = (hash & 0x00FF00) >> 8;
-        int b = hash & 0x0000FF;
-
-        return new Color(
-                Remap(r, 0, 255, 0d, 1d),
-                Remap(g, 0, 255, 0d, 1d),
-                Remap(b, 0, 255, 0d, 1d),
-                1);
-    }
-
-    private static double Remap(int value, int low1, int high1, double low2, double high2)
-    {
-        return low2 + ((double)value - (double)low1) * (high2 - low2) / ((double)high1 - (double)low1);
-    }
-
 
     private void AddSubFolder(Folder folder, TreeItem<FileSystemItem> parentNode)
     {
@@ -445,19 +308,6 @@ public class HomeWindowController implements Initializable
         expandTreeView(treeView.getRoot());
     }
 
-    private void refreshTree()
-    {
-        int viewableListIndex = viewableCourseList.getSelectionModel().getSelectedIndex();
-        int moderatedListIndex = moderatedCourseList.getSelectionModel().getSelectedIndex();
-        var selectedFileItem = treeView.getSelectionModel().getSelectedItem();
-
-        init();
-
-        viewableCourseList.getSelectionModel().select(viewableListIndex);
-        moderatedCourseList.getSelectionModel().select(moderatedListIndex);
-        treeView.getSelectionModel().select(selectedFileItem);
-    }
-
     public void onClickLogOut(ActionEvent actionEvent) throws IOException
     {
         UserDbManager.getInstance().setCurrentUser(null);
@@ -470,4 +320,165 @@ public class HomeWindowController implements Initializable
 
         UserDbManager.getInstance().DeleteUser(user.getId());
     }
+
+    //region Rendering, context menus, misc...
+
+    Callback<ListView<Course>, ListCell<Course>> renderCourseItem()
+    {
+        return param -> new ListCell<Course>() {
+            @Override
+            protected void updateItem(Course item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.getTitle() == null)
+                {
+                    setText(null);
+                    return;
+                }
+
+                setText(item.getTitle());
+            }
+        };
+    }
+
+    private void openTreeContextMenu(TreeItem<FileSystemItem> item, double x, double y) {
+        createTreeContextMenu(item);
+        treeContextMenu.show(treeView, x, y);
+    }
+
+    private void openListContextMenu(Course course, double x, double y) {
+        createListContextMenu(course);
+        listContextMenu.show(moderatedCourseList, x, y);
+    }
+
+    private void createTreeContextMenu(TreeItem<FileSystemItem> cell) {
+        FileSystemItem item = cell.getValue();
+
+        if(item == null)
+            return;
+
+        treeContextMenu.getItems().clear();
+
+        MenuItem createFolder = new MenuItem("Create Folder");
+        MenuItem createFile = new MenuItem("Create File");
+        MenuItem delete = new MenuItem("Delete");
+
+        createFolder.setOnAction(event -> {
+            CreateFolder(item.as(Folder.class));
+        });
+
+        createFile.setOnAction(event -> {
+            CreateFile(item.as(Folder.class));
+        });
+
+        delete.setOnAction(event -> {
+            if(item.isFile())
+            {
+                File file = item.as(File.class);
+                FileDbManager.getInstance().DeleteFile(file.getId());
+                InitTree();
+            }
+            else if(item.isFolder())
+            {
+                Folder folder = item.as(Folder.class);
+                FolderDbManager.getInstance().DeleteFolder(folder.getId());
+                InitTree();
+            }
+        });
+
+        var currentUser = UserDbManager.getInstance().getCurrentUser();
+        var moderatedCourses = RelationshipDbManager.getInstance().GetModeratedCoursesIds(currentUser);
+        var doesModerate = moderatedCourses.contains(selectedCourse.getId());
+
+        if(item.isFolder() && doesModerate)
+        {
+            treeContextMenu.getItems().add(createFolder);
+            treeContextMenu.getItems().add(createFile);
+        }
+
+        if(doesModerate)
+            treeContextMenu.getItems().add(delete);
+    }
+
+    private void createListContextMenu(Course course)
+    {
+        if(course == null)
+            return;
+
+        listContextMenu.getItems().clear();
+
+        MenuItem giveViewingAccess = new MenuItem("Give viewing access");
+        MenuItem giveModeratorAccess = new MenuItem("Give moderator access");
+        MenuItem deleteCourse = new MenuItem("Delete");
+
+        giveViewingAccess.setOnAction(event -> {
+            GiveViewingAccess(course);
+        });
+
+        giveModeratorAccess.setOnAction(event -> {
+            GiveModeratorAccess(course);
+        });
+
+        deleteCourse.setOnAction(event -> {
+            CourseDbManager.getInstance().DeleteCourse(course.getId());
+            init();
+        });
+
+        listContextMenu.getItems().add(giveViewingAccess);
+        listContextMenu.getItems().add(giveModeratorAccess);
+
+        User currentUser = UserDbManager.getInstance().getCurrentUser();
+        var ownedCourses = RelationshipDbManager.getInstance().GetOwnedCoursesIds(currentUser);
+        var doesOwn = ownedCourses.contains(course.getId());
+
+        if(doesOwn)
+            listContextMenu.getItems().add(deleteCourse);
+    }
+
+    private Callback<TreeView<FileSystemItem>,TreeCell<FileSystemItem>> getRenderTreeItem()
+    {
+        return new Callback<TreeView<FileSystemItem>,TreeCell<FileSystemItem>>(){
+            @Override
+            public TreeCell<FileSystemItem> call(TreeView<FileSystemItem> p) {
+                TreeCell<FileSystemItem> cell = new TreeCell<FileSystemItem>() {
+                    @Override
+                    protected void updateItem(FileSystemItem file, boolean empty) {
+                        super.updateItem(file, empty);
+
+                        if (!empty)
+                        {
+                            setText(file.getDisplayName());
+
+                            if(file.isFile())
+                                setTextFill(GetColor(File.class.cast(file).getFileExtension()));
+                        }
+                        else
+                            setText(null);
+                    }
+                };
+                return cell;
+            }
+        };
+    }
+
+    private static Color GetColor(String fileName)
+    {
+        int hash = fileName.hashCode();
+        int r = (hash & 0xFF0000) >> 16;
+        int g = (hash & 0x00FF00) >> 8;
+        int b = hash & 0x0000FF;
+
+        return new Color(
+                Remap(r, 0, 255, 0d, 1d),
+                Remap(g, 0, 255, 0d, 1d),
+                Remap(b, 0, 255, 0d, 1d),
+                1);
+    }
+
+    private static double Remap(int value, int low1, int high1, double low2, double high2)
+    {
+        return low2 + ((double)value - (double)low1) * (high2 - low2) / ((double)high1 - (double)low1);
+    }
+
+    //endregion
 }
