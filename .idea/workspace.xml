@@ -10,41 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f9801d-e689-4af5-b11e-16cd23752e86" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_xml_fastinfoset_FastInfoset_1_2_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_11_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_2_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_5_7_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_27_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_2_3_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_2_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_1_1_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jvnet_staxex_stax_ex_1_8.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/RelationshipController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ld1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ld1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/data/Folder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/dbManagers/DbManager2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/CreateCourseWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/CreateCourseWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/HomeWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/RegisterWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ld1/fxControllers/RegisterWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Folder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/data/Folder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/CreateCourseWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/ld1/fxControllers/HomeWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/dispatcher-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +173,7 @@
       <workItem from="1639187069442" duration="3158000" />
       <workItem from="1639190298478" duration="5776000" />
       <workItem from="1639223229248" duration="15470000" />
-      <workItem from="1639263385968" duration="9217000" />
+      <workItem from="1639263385968" duration="11487000" />
     </task>
     <servers />
   </component>
@@ -223,17 +191,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/ld2/webControllers/WebPersonController.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

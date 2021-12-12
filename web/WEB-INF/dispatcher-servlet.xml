@@ -14,11 +14,11 @@
         <property name="mappings">
             <props>
                 <prop key="/login">login</prop>
-                <prop key="/company">company</prop>
                 <prop key="/course">course</prop>
                 <prop key="/file">file</prop>
                 <prop key="/folder">folder</prop>
                 <prop key="/person">person</prop>
+                <prop key="/rel">rel</prop>
             </props>
         </property>
     </bean>
@@ -29,9 +29,6 @@
 
     <bean name="login"
           class="com.example.ld2.webControllers.WebLoginController"
-    />
-    <bean name="company"
-          class="com.example.ld2.webControllers.WebCompanyController"
     />
     <bean name="course"
           class="com.example.ld2.webControllers.WebCourseController"
@@ -44,6 +41,9 @@
     />
     <bean name="person"
           class="com.example.ld2.webControllers.WebPersonController"
+    />
+    <bean name="rel"
+          class="com.example.ld2.webControllers.RelationshipController"
     />
 
 </beans>
